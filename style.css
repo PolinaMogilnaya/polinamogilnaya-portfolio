@@ -9,13 +9,16 @@ html {
     scroll-behavior: smooth;
 }
 
+
 body {
     margin: 0;
     background: #ffffff;
     color: #111111;
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 14px;
+    font-weight: 300;
 }
+
 
 a:focus-visible,
 button:focus-visible {
@@ -127,17 +130,11 @@ main {
     opacity: 0.84;
 }
 
-.project-title {
-    margin: 10px 0 0;
-    text-align: center;
 
-    color: #999999;
-    font-family: "American Typewriter", "Courier New", monospace;
-    font-size: 12px;
-    font-weight: normal;
-    line-height: 1.5;
-    letter-spacing: 0.1px;
+.project-title {
+    display: none;
 }
+
 
 .placeholder {
     display: flex;
@@ -284,7 +281,7 @@ footer {
 .project-page h1 {
     margin: 0 0 12px;
 
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
     font-size: 28px;
     font-weight: 300;
     letter-spacing: -0.7px;
