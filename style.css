@@ -78,23 +78,30 @@ img {
 .site-menu {
     display: none;
     flex-direction: column;
-    align-items: flex-start;
-    gap: 18px;
+    align-items: center;
+    gap: 24px;
 
-    padding: 20px 22px 26px;
+    padding: 30px 22px;
     background: #ffffff;
 }
 
 .site-menu a {
-    color: #111111;
+    color: #999999;
     text-decoration: none;
 
-    font-size: 12px;
+    font-size: 16px;
+    font-weight: 700;
     letter-spacing: 0.5px;
+    transition: color 0.2s ease;
 }
 
 .site-menu a:hover {
-    opacity: 0.5;
+    color: #111111;
+}
+
+/* Активная страница */
+.site-menu a.active {
+    color: #111111;
 }
 
 
@@ -323,6 +330,7 @@ footer {
         display: flex;
         flex-direction: row;
         align-items: center;
+        justify-content: flex-end;
         gap: 28px;
 
         padding: 0;
@@ -330,66 +338,12 @@ footer {
         background: transparent;
     }
 
-    main {
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-        column-gap: 2.2vw;
-        row-gap: 64px;
-
-        padding: 35px 40px 100px;
-    }
-
-    .project:nth-child(1) {
-        grid-column: 1 / span 5;
-    }
-
-    .project:nth-child(2) {
-        grid-column: 8 / span 4;
-        margin-top: 100px;
-    }
-
-    .project:nth-child(3) {
-        grid-column: 4 / span 6;
-        margin-top: 15px;
-    }
-
-    .project:nth-child(4) {
-        grid-column: 1 / span 4;
-        margin-top: 60px;
-    }
-
-    .project:nth-child(5) {
-        grid-column: 8 / span 4;
-        margin-top: -10px;
-    }
-
-    footer {
-        padding: 30px 40px;
-    }
-
-    .about-page {
-        padding: 60px 40px 100px;
-    }
-
-    .about-page h1,
-    .contact-page h1 {
-        font-size: 42px;
-    }
-
-    .contact-page {
-        padding: 60px 40px 100px;
-    }
-
-    .project-page {
-        padding: 32px 40px 100px;
-    }
-
-    .project-page h1 {
-        font-size: 36px;
+    .site-menu a {
+        font-size: 16px;
     }
 }
 
-
-/* ===== МОБИЛЬНАЯ НАВИГАЦИЯ ===== */
+/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
 
 @media (max-width: 699px) {
     .site-header {
@@ -406,56 +360,13 @@ footer {
         left: 0;
         right: 0;
         z-index: 10;
+
+        align-items: center;
+        text-align: center;
+        padding: 34px 22px;
     }
 
     .site-menu.is-open {
         display: flex;
-    }
-
-    .project:nth-child(1) {
-        width: 100%;
-    }
-
-    .project:nth-child(2) {
-        width: 82%;
-        justify-self: end;
-    }
-
-    .project:nth-child(3) {
-        width: 92%;
-        justify-self: start;
-    }
-
-    .project:nth-child(4) {
-        width: 78%;
-        justify-self: center;
-    }
-
-    .project:nth-child(5) {
-        width: 88%;
-        justify-self: end;
-    }
-}
-
-
-/* ===== СТРАНИЦЫ ABOUT И CONTACT НА МОБИЛЬНОМ ===== */
-
-@media (max-width: 699px) {
-    .about-page,
-    .contact-page {
-        padding: 40px 22px 60px;
-    }
-}
-
-
-/* ===== УВАЖЕНИЕ К НАСТРОЙКАМ АНИМАЦИИ ===== */
-
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    .project-image {
-        transition: none;
     }
 }
