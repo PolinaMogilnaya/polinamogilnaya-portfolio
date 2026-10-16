@@ -1,5 +1,6 @@
 
 
+
 /* ===== ОСНОВА ===== */
 
 * {
@@ -8,10 +9,6 @@
 
 html {
     scroll-behavior: smooth;
-}
-
-
-html {
     min-height: 100%;
 }
 
@@ -21,14 +18,12 @@ body {
     margin: 0;
     display: flex;
     flex-direction: column;
-
     background: #ffffff;
     color: #111111;
     font-family: "Times New Roman", Times, serif;
     font-size: 16px;
     font-weight: 400;
 }
-
 
 a:focus-visible,
 button:focus-visible {
@@ -53,24 +48,37 @@ img {
     position: relative;
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    gap: 30px;
+    align-items: flex-start;
+    gap: 20px;
     width: 100%;
-    padding: 26px 32px;
+    padding: 0;
     background: #ffffff;
 }
 
 .logo {
-    flex-shrink: 0;
-    color: inherit;
-    text-decoration: none;
-    font-size: 13px;
-    font-weight: 500;
-    letter-spacing: -0.3px;
+    display: block;
+    flex: 0 1 420px;
+    width: 420px;
+    min-width: 0;
+    margin: 0 auto 0 0;
+    padding: 0;
+    line-height: 0;
+    position: relative;
+    z-index: 5;
+}
+
+.logo img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    height: auto;
+    margin: 0;
+    padding: 0;
 }
 
 .menu-button {
     display: none;
+    flex-shrink: 0;
     background: none;
     border: none;
     padding: 4px;
@@ -315,7 +323,12 @@ footer {
 @media (min-width: 700px) {
 
     .site-header {
-        padding: 30px 40px;
+        padding: 0;
+    }
+
+    .logo {
+        flex: 0 1 300px;
+        width: 300px;
     }
 
     .menu-button {
@@ -323,13 +336,14 @@ footer {
     }
 
     .site-menu {
-        position: static;
+        position: relative;
+        z-index: 10;
         display: flex;
         flex-direction: row;
         align-items: center;
         justify-content: flex-end;
         gap: 28px;
-        padding: 0;
+        padding: 30px 40px 0 0;
         margin-left: auto;
         background: transparent;
     }
@@ -337,8 +351,6 @@ footer {
     .site-menu a {
         font-size: 18px;
     }
-
-    /* Асимметричная сетка главной страницы */
 
     #work {
         grid-template-columns: repeat(12, minmax(0, 1fr));
@@ -423,21 +435,26 @@ footer {
     .site-header {
         position: relative;
         z-index: 20;
-        padding: 22px;
+        padding: 0;
+        align-items: flex-start;
     }
-
     .logo {
+        flex: 0 1 55%;
+        width: 55%;
+        min-width: 0;
         position: relative;
         z-index: 30;
+    }
+    .logo img {
+        width: 100%;
     }
 
     .menu-button {
         display: block;
         position: relative;
         z-index: 30;
+        margin: 12px 14px 0 auto;
     }
-
-    /* Полноэкранное меню */
 
     .site-menu {
         position: fixed;
@@ -495,7 +512,7 @@ footer {
 }
 
 
-/* Уменьшаем анимацию, если она отключена в настройках устройства */
+/* ===== УМЕНЬШЕНИЕ АНИМАЦИИ ===== */
 
 @media (prefers-reduced-motion: reduce) {
     html {
@@ -508,4 +525,3 @@ footer {
         transition-duration: 0.01ms !important;
     }
 }
-
