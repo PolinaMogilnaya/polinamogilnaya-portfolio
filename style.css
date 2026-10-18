@@ -575,21 +575,42 @@ footer {
 
 @media (min-width: 700px) {
     .claim-page {
-        align-items: center;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        align-items: start;
+        column-gap: 60px;
+        row-gap: 40px;
         padding: 30px 40px 80px;
-        gap: 40px;
+    }
+
+    .claim-page .page-copy {
+        grid-column: 1;
+        grid-row: 1;
+    }
+
+    .claim-video,
+    .claim-photo,
+    .claim-logo-video {
+        width: 100%;
+        height: auto;
+        padding: 0;
     }
 
     .claim-video {
-        width: min(100%, 420px);
+        grid-column: 2;
+        grid-row: 1;
+        aspect-ratio: 9 / 16;
+        object-fit: cover;
     }
 
     .claim-photo {
-        width: min(100%, 900px);
+        grid-column: 2;
+        grid-row: 2;
     }
 
     .claim-logo-video {
-        width: min(100%, 500px);
+        grid-column: 2;
+        grid-row: 3;
     }
 }
 @media (max-width: 699px) {
