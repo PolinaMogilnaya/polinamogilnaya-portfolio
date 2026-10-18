@@ -535,3 +535,65 @@ footer {
         transition-duration: 0.01ms !important;
     }
 }
+/* ===== CLAIM PROJECT ===== */
+
+.claim-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 22px 60px;
+}
+
+.claim-video,
+.claim-photo,
+.claim-logo-video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.claim-video {
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+}
+
+@media (max-width: 699px) {
+    .claim-page {
+        padding: 0 0 40px;
+        gap: 20px;
+    }
+
+    .claim-video {
+        width: 100%;
+    }
+
+    .claim-photo,
+    .claim-logo-video {
+        padding: 0 22px;
+    }
+}
+
+@media (min-width: 700px) {
+    .claim-page {
+        align-items: center;
+        padding: 30px 40px 80px;
+        gap: 40px;
+    }
+
+    .claim-video {
+        width: min(100%, 420px);
+    }
+
+    .claim-photo {
+        width: min(100%, 900px);
+    }
+
+    .claim-logo-video {
+        width: min(100%, 500px);
+    }
+}
+@media (max-width: 699px) {
+    .claim-page .page-copy {
+        margin: 0 22px;
+    }
+}
