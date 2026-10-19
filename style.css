@@ -618,3 +618,28 @@ footer {
         margin: 0 22px;
     }
 }
+
+.error-page {
+    padding: 30px 22px;
+}
+
+.error-page h1 {
+    margin: 0 0 24px;
+    font-size: clamp(64px, 15vw, 180px);
+    line-height: 0.9;
+    font-weight: 400;
+}
+
+.error-image {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin-bottom: 24px;
+}
+
+.error-page a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+}

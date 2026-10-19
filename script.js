@@ -14,3 +14,10 @@ if (menuButton && siteMenu) {
         );
     });
 }
+if ("serviceWorker" in navigator) {
+    window.addEventListener("load", () => {
+        navigator.serviceWorker.register(
+            "/polinamogilnaya-portfolio/sw.js"
+        );
+    });
+}
