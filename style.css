@@ -1,6 +1,4 @@
 
-
-
 /* ===== ОСНОВА ===== */
 
 * {
@@ -119,7 +117,7 @@ img {
 /* ===== ГЛАВНАЯ: ПРОЕКТЫ ===== */
 
 main {
-    padding: 20px 22px 55px;
+    padding: 34px 22px 55px;
 }
 
 #work {
@@ -178,9 +176,7 @@ footer {
 }
 
 
-/* ===== ABOUT ===== */
-
-/* ===== ОБЩАЯ СТРУКТУРА ВНУТРЕННИХ СТРАНИЦ ===== */
+/* ===== ВНУТРЕННИЕ СТРАНИЦЫ ===== */
 
 .content-layout {
     display: grid;
@@ -189,7 +185,7 @@ footer {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 10px 22px 60px;
+    padding: 24px 22px 60px;
 }
 
 .page-copy {
@@ -219,20 +215,18 @@ footer {
 }
 
 
-/* ===== CONTACT ===== */
-
+/* ===== ABOUT И CONTACT ===== */
 
 .contact-page {
     display: flex;
     flex-direction: column;
     align-items: flex-start;
     gap: 24px;
-    padding: 40px 22px 60px;
+    padding: 54px 22px 60px;
     max-width: 1100px;
     width: 100%;
     margin: 0 auto;
 }
-
 
 .contact-page h1 {
     margin: 0;
@@ -266,9 +260,20 @@ footer {
     text-underline-offset: 3px;
 }
 
+/* Ссылка на почту в About */
+
+.about-page a[href^="mailto:"] {
+    color: inherit;
+    text-decoration: none;
+    text-underline-offset: 3px;
+}
+
+.about-page a[href^="mailto:"]:hover {
+    color: #999999;
+}
+
 
 /* ===== СТРАНИЦЫ ПРОЕКТОВ ===== */
-
 
 .project-page {
     display: flex;
@@ -278,9 +283,8 @@ footer {
     width: 100%;
     max-width: 1100px;
     margin: 0 auto;
-    padding: 28px 22px 70px;
+    padding: 42px 22px 70px;
 }
-
 
 .project-page h1 {
     margin: 0 0 16px;
@@ -288,7 +292,6 @@ footer {
     font-weight: 400;
     letter-spacing: -0.5px;
 }
-
 
 .project-description {
     width: 100%;
@@ -299,7 +302,6 @@ footer {
     font-weight: 400;
     line-height: 1.7;
 }
-
 
 .project-description p {
     margin: 0 0 16px;
@@ -317,7 +319,7 @@ footer {
 }
 
 
-/* ===== ССЫЛКИ ВНУТРИ ТЕКСТА ===== */
+/* ===== ССЫЛКИ В ТЕКСТЕ ===== */
 
 .text-link {
     color: #999999;
@@ -327,6 +329,57 @@ footer {
 
 .text-link:hover {
     color: #111111;
+}
+
+
+/* ===== CLAIM PROJECT ===== */
+
+.claim-page {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    padding: 0 22px 60px;
+}
+
+.claim-video,
+.claim-photo,
+.claim-logo-video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.claim-video {
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+}
+
+
+/* ===== СТРАНИЦА ОШИБКИ ===== */
+
+.error-page {
+    padding: 30px 22px;
+}
+
+.error-page h1 {
+    margin: 0 0 24px;
+    font-size: clamp(64px, 15vw, 180px);
+    line-height: 0.9;
+    font-weight: 400;
+}
+
+.error-image {
+    display: block;
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin-bottom: 24px;
+}
+
+.error-page a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
 }
 
 
@@ -361,7 +414,7 @@ footer {
     }
 
     .site-menu a {
-        font-size: 18px;
+        font-size: 20px;
     }
 
     #work {
@@ -369,7 +422,7 @@ footer {
         column-gap: 24px;
         row-gap: 60px;
         align-items: start;
-        padding: 28px 40px 70px;
+        padding: 42px 40px 70px;
     }
 
     #work .project:nth-child(1) {
@@ -399,188 +452,45 @@ footer {
         margin-top: 70px;
     }
 
-   
-    /* Внутренние страницы: две колонки */
-
     .content-layout {
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         column-gap: 60px;
         row-gap: 28px;
-        padding: 30px 40px 80px;
+        padding: 44px 40px 80px;
     }
 
     .page-copy p {
         font-size: 19px;
     }
 
-
-   .contact-page {
-    padding: 60px 40px 80px;
-    margin-left: 0;
-    margin-right: 0;
+    .contact-page {
+        padding: 74px 40px 80px;
+        margin-left: 0;
+        margin-right: 0;
     }
-
 
     .contact-page p,
     .contact-links li {
         font-size: 19px;
     }
 
-  .project-page {
-    padding: 40px 40px 80px;
-    margin-left: 0;
-    margin-right: 0;
+    .project-page {
+        padding: 54px 40px 80px;
+        margin-left: 0;
+        margin-right: 0;
     }
 
     .project-description {
         font-size: 19px;
     }
-}
 
-
-/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
-
-@media (max-width: 699px) {
-
-    .site-header {
-        position: relative;
-        z-index: 20;
-        padding: 0;
-        align-items: flex-start;
-    }
-    .logo {
-        flex: 0 1 55%;
-        width: 55%;
-        min-width: 0;
-        position: relative;
-        z-index: 30;
-    }
-    .logo img {
-        width: 100%;
-    }
-
-    .menu-button {
-        display: block;
-        position: relative;
-        z-index: 30;
-        margin: 12px 14px 0 auto;
-    }
-
-    .site-menu {
-        position: fixed;
-        inset: 0;
-        z-index: 10;
-        width: 100%;
-        height: 100vh;
-        height: 100dvh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 28px;
-        padding: 100px 22px 40px;
-        margin: 0;
-        background: #ffffff;
-        box-sizing: border-box;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transform: translateY(8px);
-        transition:
-            opacity 0.3s ease,
-            transform 0.3s ease,
-            visibility 0.3s ease;
-    }
-
-    .site-menu.is-open {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: translateY(0);
-    }
-
-    .site-menu a {
-        font-size: 22px;
-        text-align: center;
-    }
-
-    .about-page h1,
-    .contact-page h1 {
-        font-size: 30px;
-    }
-
-    .about-page > p,
-    .contact-page p,
-    .contact-links li,
-    .project-description {
-        font-size: 18px;
-    }
-
-    .project-page h1 {
-        font-size: 28px;
-    }
-}
-
-
-/* ===== УМЕНЬШЕНИЕ АНИМАЦИИ ===== */
-
-@media (prefers-reduced-motion: reduce) {
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        transition-duration: 0.01ms !important;
-    }
-}
-/* ===== CLAIM PROJECT ===== */
-
-.claim-page {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    padding: 0 22px 60px;
-}
-
-.claim-video,
-.claim-photo,
-.claim-logo-video {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.claim-video {
-    aspect-ratio: 9 / 16;
-    object-fit: cover;
-}
-
-@media (max-width: 699px) {
-    .claim-page {
-        padding: 0 0 40px;
-        gap: 20px;
-    }
-
-    .claim-video {
-        width: 100%;
-    }
-
-    .claim-photo,
-    .claim-logo-video {
-        padding: 0 22px;
-    }
-}
-
-@media (min-width: 700px) {
     .claim-page {
         display: grid;
         grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
         align-items: start;
         column-gap: 60px;
         row-gap: 40px;
-        padding: 30px 40px 80px;
+        padding: 38px 40px 80px;
     }
 
     .claim-page .page-copy {
@@ -613,33 +523,130 @@ footer {
         grid-row: 3;
     }
 }
+
+
+/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
+
 @media (max-width: 699px) {
+
+    .site-header {
+        position: relative;
+        z-index: 20;
+        padding: 0;
+        align-items: flex-start;
+        background: #ffffff;
+    }
+
+    .logo {
+        flex: 0 1 55%;
+        width: 55%;
+        min-width: 0;
+        position: relative;
+        z-index: 30;
+    }
+
+    .logo img {
+        width: 100%;
+    }
+
+    .menu-button {
+        display: block;
+        position: relative;
+        z-index: 30;
+        margin: 12px 14px 0 auto;
+        font-size: 36px;
+    }
+
+    .site-menu {
+        position: fixed;
+        inset: 0;
+        z-index: 10;
+        width: 100%;
+        height: 100vh;
+        height: 100dvh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 32px;
+        padding: 70px 22px 90px;
+        margin: 0;
+        background: #ffffff;
+        box-sizing: border-box;
+        opacity: 0;
+        visibility: hidden;
+        pointer-events: none;
+        transform: translateY(8px);
+        transition:
+            opacity 0.3s ease,
+            transform 0.3s ease,
+            visibility 0.3s ease;
+    }
+
+    .site-menu.is-open {
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: translateY(0);
+    }
+
+    .site-menu a {
+        font-size: 25px;
+        text-align: center;
+    }
+
+    .about-page h1,
+    .contact-page h1 {
+        font-size: 30px;
+    }
+
+    .about-page > p,
+    .contact-page p,
+    .contact-links li,
+    .project-description {
+        font-size: 18px;
+    }
+
+    .project-page h1 {
+        font-size: 28px;
+    }
+
+    .claim-page {
+        padding: 0 0 40px;
+        gap: 20px;
+    }
+
+    .claim-video {
+        width: 100%;
+    }
+
+    .claim-photo,
+    .claim-logo-video {
+        padding: 0 22px;
+    }
+
     .claim-page .page-copy {
         margin: 0 22px;
     }
+    
+        .content-layout:has(img[src*="thedumppagessite"]) .page-visual {
+        width: calc(100% + 44px);
+        margin-left: -22px;
+    }
 }
 
-.error-page {
-    padding: 30px 22px;
-}
 
-.error-page h1 {
-    margin: 0 0 24px;
-    font-size: clamp(64px, 15vw, 180px);
-    line-height: 0.9;
-    font-weight: 400;
-}
+/* ===== УМЕНЬШЕНИЕ АНИМАЦИИ ===== */
 
-.error-image {
-    display: block;
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    margin-bottom: 24px;
-}
+@media (prefers-reduced-motion: reduce) {
 
-.error-page a {
-    color: inherit;
-    text-decoration: none;
-    font-size: 14px;
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+    }
 }
