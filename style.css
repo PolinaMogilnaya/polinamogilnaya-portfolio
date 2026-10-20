@@ -628,7 +628,7 @@ footer {
     .claim-page .page-copy {
         margin: 0 22px;
     }
-    
+
         .content-layout:has(img[src*="thedumppagessite"]) .page-visual {
         width: calc(100% + 44px);
         margin-left: -22px;
@@ -649,4 +649,8 @@ footer {
     *::after {
         transition-duration: 0.01ms !important;
     }
+}
+
+.page-visual img + img {
+    margin-top: 24px;
 }
