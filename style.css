@@ -518,10 +518,15 @@ footer {
         grid-row: 2;
     }
 
-    .claim-logo-video {
-        grid-column: 2;
-        grid-row: 3;
-    }
+    .claim-diskspin-video {
+    grid-column: 2;
+    grid-row: 3;
+}
+
+.claim-page .claim-logo-video:not(.claim-diskspin-video) {
+    grid-column: 2;
+    grid-row: 4;
+}
 }
 
 
