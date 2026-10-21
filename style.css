@@ -659,3 +659,50 @@ footer {
 .page-visual img + img {
     margin-top: 24px;
 }
+
+/* ===== ОБНОВЛЕНИЕ КОМПОЗИЦИИ ===== */
+
+/* Небольшой отступ между шапкой и содержимым */
+.site-header {
+    margin-bottom: 12px;
+}
+
+/* Мягкое появление изображений и видео */
+img,
+video {
+    animation: mediaFadeIn 0.8s ease both;
+}
+
+@keyframes mediaFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Чуть больше воздуха слева на компьютере */
+@media (min-width: 700px) {
+    .content-layout,
+    .claim-page,
+    .contact-page,
+    .project-page {
+        padding-left: 56px;
+    }
+}
+
+/* Учитываем настройку уменьшения анимации */
+@media (prefers-reduced-motion: reduce) {
+   img,
+video {
+    animation: mediaFadeIn 0.8s ease both;
+}
+
+.site-header .logo img {
+    animation: none;
+}
+}
