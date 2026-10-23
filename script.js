@@ -82,3 +82,61 @@ if ("serviceWorker" in navigator) {
         });
     });
 }
+
+/* ===== ENGLISH TYPOGRAPHY: PREVENT WIDOWED WORDS ===== */
+
+function fixEnglishWidows() {
+    const shortWords = new Set([
+        "a", "an", "the",
+        "of", "in", "on", "at",
+        "to", "for", "by", "up",
+        "as", "or", "and", "nor",
+        "with", "from", "into", "via"
+    ]);
+
+    const walker = document.createTreeWalker(
+        document.body,
+        NodeFilter.SHOW_TEXT,
+        {
+            acceptNode(node) {
+                const parent = node.parentElement;
+
+                if (!parent || !node.nodeValue.trim()) {
+                    return NodeFilter.FILTER_REJECT;
+                }
+
+                if (
+                    parent.closest(
+                        "script, style, noscript, textarea, input, button, .site-menu"
+                    )
+                ) {
+                    return NodeFilter.FILTER_REJECT;
+                }
+
+                return NodeFilter.FILTER_ACCEPT;
+            }
+        }
+    );
+
+    const textNodes = [];
+    let node;
+
+    while ((node = walker.nextNode())) {
+        textNodes.push(node);
+    }
+
+    textNodes.forEach(textNode => {
+        textNode.nodeValue = textNode.nodeValue.replace(
+            /(^|\s)(a|an|the|of|in|on|at|to|for|by|up|as|or|and|nor|with|from|into|via) +(?=\S)/gi,
+            (match, prefix, word) => {
+                if (!shortWords.has(word.toLowerCase())) {
+                    return match;
+                }
+
+                return prefix + word + "\u00A0";
+            }
+        );
+    });
+}
+
+fixEnglishWidows();

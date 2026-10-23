@@ -780,3 +780,204 @@ video.media-loaded {
         align-self: start;
     }
 }
+
+
+/* ===== ИКОНКИ КОНТАКТОВ ===== */
+
+.contact-links {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 22px;
+    padding: 0;
+    margin: 0;
+    list-style: none;
+}
+
+.contact-links li {
+    margin: 0;
+    line-height: 0;
+}
+
+.contact-links a {
+    display: inline-flex;
+    align-items: center;
+    justify-content: flex-start;
+    text-decoration: none;
+}
+
+.contact-links img {
+    display: block;
+    width: 46px;
+    height: 46px;
+    object-fit: contain;
+    transition: opacity 0.2s ease;
+}
+
+.contact-links a:hover img {
+    opacity: 0.65;
+}
+
+/* ===== CONTACT: КРУПНЫЕ ИКОНКИ ===== */
+
+.contact-layout .contact-icons {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px;
+    padding: 10px 0;
+}
+
+.contact-layout .contact-icons a {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    text-decoration: none;
+}
+
+.contact-layout .contact-icons img {
+    width: 64px;
+    height: 64px;
+    object-fit: contain;
+    transition: opacity 0.2s ease;
+}
+
+.contact-layout .contact-icons a:hover img {
+    opacity: 0.65;
+}
+
+/* ===== CONTACT: ПЕЧАТЬ В ПОДВАЛЕ ===== */
+
+.contact-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+}
+
+.footer-stamp {
+    display: none;
+}
+
+@media (min-width: 700px) {
+    .contact-layout {
+        min-height: 55vh;
+    }
+
+    .contact-layout .contact-icons {
+        grid-column: 2;
+        grid-row: 1;
+        align-self: stretch;
+        justify-content: center;
+        gap: 38px;
+    }
+
+    .contact-layout .contact-icons img {
+        width: 88px;
+        height: 88px;
+    }
+
+    .contact-footer {
+        position: relative;
+        width: 100%;
+        padding-right: 40px;
+    }
+
+    .contact-footer .footer-stamp {
+        display: block;
+        width: 100px;
+        height: auto;
+        margin-left: auto;
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (max-width: 699px) {
+    .contact-layout .contact-icons {
+        align-items: center;
+        gap: 24px;
+        padding-top: 10px;
+    }
+
+    .contact-layout .contact-icons img {
+        width: 64px;
+        height: 64px;
+    }
+
+    .contact-footer .footer-stamp {
+        display: none;
+    }
+}
+
+
+/* ===== ПЕЧАТЬ В МОБИЛЬНОМ МЕНЮ ===== */
+
+.menu-stamp {
+    display: none;
+}
+
+@media (max-width: 699px) {
+    .site-menu {
+        gap: 32px;
+    }
+
+    .site-menu .menu-stamp {
+        display: block;
+        flex: 0 0 auto;
+        width: 110px;
+        height: auto;
+        margin: 0;
+        animation: none;
+        opacity: 1;
+        transform: none;
+    }
+}
+
+@media (min-width: 700px) {
+    .site-menu .menu-stamp {
+        display: none;
+    }
+}
+
+
+
+/* ===== ЕДИНОЕ МОБИЛЬНОЕ МЕНЮ НА ВСЕХ СТРАНИЦАХ ===== */
+
+.menu-stamp {
+    display: none;
+}
+
+@media (max-width: 699px) {
+    .site-menu {
+        justify-content: center;
+        padding-bottom: 200px;
+    }
+
+    .site-menu .menu-stamp {
+        display: block;
+        position: absolute;
+        top: calc(50% + 40px);
+        left: 50%;
+        width: 125px;
+        height: auto;
+        margin: 0;
+        flex: 0 0 auto;
+        animation: none;
+        opacity: 1;
+        transform: translateX(-50%);
+    }
+
+    .site-menu.is-open .menu-stamp {
+        transform: translateX(-50%);
+    }
+}
+
+@media (min-width: 700px) {
+    .site-menu .menu-stamp {
+        display: none;
+    }
+}
