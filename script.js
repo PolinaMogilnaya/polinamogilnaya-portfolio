@@ -1,4 +1,19 @@
 
+/* ===== ВСЕГДА ОТКРЫВАТЬ ГЛАВНУЮ СВЕРХУ ===== */
+
+if (
+    window.location.pathname.endsWith("/polinamogilnaya-portfolio/") ||
+    window.location.pathname.endsWith("/polinamogilnaya-portfolio/index.html")
+) {
+    if ("scrollRestoration" in history) {
+        history.scrollRestoration = "manual";
+    }
+
+    window.scrollTo(0, 0);
+}
+
+
+
 const menuButton = document.querySelector(".menu-button");
 const siteMenu = document.querySelector(".site-menu");
 
