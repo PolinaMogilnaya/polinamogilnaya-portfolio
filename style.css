@@ -766,4 +766,17 @@ video.media-loaded {
         transform: none;
     }
 }
+/* Sticky project description — desktop only */
+@media (min-width: 700px) {
+    .content-layout .page-copy {
+        position: sticky;
+        top: 70px;
+        align-self: start;
+    }
 
+    .claim-page > .page-copy {
+        position: sticky;
+        top: 70px;
+        align-self: start;
+    }
+}
