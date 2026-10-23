@@ -686,12 +686,7 @@ footer {
 }
 
 
-/* ===== ПЛАВНОЕ ПОЯВЛЕНИЕ ИЗОБРАЖЕНИЙ И ВИДЕО ===== */
 
-img,
-video {
-    animation: mediaFadeIn 0.8s ease both;
-}
 
 /* Логотип не анимируем */
 
@@ -701,17 +696,6 @@ video {
     transform: none;
 }
 
-@keyframes mediaFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(6px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
 
 
 /* ===== УМЕНЬШЕНИЕ АНИМАЦИИ ===== */
@@ -737,3 +721,49 @@ video {
         transform: none;
     }
 }
+
+/* ===== ФЕЙД-ИН ПОСЛЕ ЗАГРУЗКИ МЕДИА ===== */
+
+img.media-pending,
+video.media-pending {
+    opacity: 0;
+}
+
+img.media-loaded,
+video.media-loaded {
+    animation: mediaFadeIn 0.8s ease both;
+}
+
+/* Логотип появляется сразу */
+
+.site-header .logo img {
+    opacity: 1;
+    animation: none !important;
+}
+
+@keyframes mediaFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    img.media-pending,
+    video.media-pending {
+        opacity: 1;
+    }
+
+    img.media-loaded,
+    video.media-loaded {
+        animation: none !important;
+        opacity: 1;
+        transform: none;
+    }
+}
+

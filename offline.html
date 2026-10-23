@@ -6,11 +6,31 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>FAILED</title>
     <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        html,
         body {
+            min-height: 100%;
             margin: 0;
+        }
+
+        body {
+            min-height: 100vh;
+            min-height: 100dvh;
             padding: 30px 22px;
             color: #111;
             font-family: "Times New Roman", Times, serif;
+        }
+
+        main {
+            min-height: calc(100vh - 60px);
+            min-height: calc(100dvh - 60px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
         }
 
         h1 {
@@ -40,7 +60,7 @@
     <main>
         <h1>FAILED</h1>
         <img src="images/failed.png" alt="FAILED">
-        <a href="./">retry</a>
+        <a href="/polinamogilnaya-portfolio/">retry</a>
     </main>
 </body>
 </html>
