@@ -1,3 +1,14 @@
+/* ===== ПЕРЕМЕННЫЕ ===== */
+
+:root {
+    --ink: #111111;
+    --muted: #767676;            /* серый меню и ссылок; для лучшей читаемости можно #767676 */
+    --gutter: 22px;              /* боковые поля на телефоне */
+    --gutter-wide: 40px;         /* боковые поля на десктопе */
+    --content-max: 1100px;
+    --ease: 0.2s ease;
+}
+
 
 /* ===== ОСНОВА ===== */
 
@@ -8,6 +19,7 @@
 html {
     scroll-behavior: smooth;
     min-height: 100%;
+    -webkit-text-size-adjust: 100%;
 }
 
 body {
@@ -17,7 +29,7 @@ body {
     display: flex;
     flex-direction: column;
     background: #ffffff;
-    color: #111111;
+    color: var(--ink);
     font-family: "Times New Roman", Times, serif;
     font-size: 16px;
     font-weight: 400;
@@ -40,95 +52,153 @@ video {
     height: auto;
 }
 
+/* Скрыто визуально, но читается скринридерами и поисковиками */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    margin: -1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0 0 0 0);
+    white-space: nowrap;
+    border: 0;
+}
+
 
 /* ===== ШАПКА ===== */
 
 .site-header {
     position: relative;
+    z-index: 20;
     display: flex;
     justify-content: space-between;
     align-items: flex-start;
     gap: 20px;
     width: 100%;
-    padding: 0;
     margin-bottom: 12px;
     background: #ffffff;
 }
 
 .logo {
+    position: relative;
+    z-index: 30;
     display: block;
-    flex: 0 1 420px;
-    width: 420px;
+    flex: 0 1 55%;
+    width: 55%;
     min-width: 0;
     margin: 0 auto 0 0;
-    padding: 0;
     line-height: 0;
-    position: relative;
-    z-index: 5;
 }
 
 .logo img {
-    display: block;
     width: 100%;
     max-width: none;
-    height: auto;
-    margin: 0;
-    padding: 0;
-    animation: none;
-    opacity: 1;
-    transform: none;
 }
 
 .menu-button {
-    display: none;
+    position: relative;
+    z-index: 30;
+    display: block;
     flex-shrink: 0;
+    margin: 12px 14px 0 auto;
+    padding: 4px;
     background: none;
     border: none;
-    padding: 4px;
     color: inherit;
     font-family: inherit;
-    font-size: 28px;
+    font-size: 36px;
     line-height: 1;
     cursor: pointer;
 }
 
 
-/* ===== НАВИГАЦИЯ ===== */
+/* ===== МЕНЮ: ТЕЛЕФОН (полноэкранное) ===== */
 
 .site-menu {
-    display: none;
+    position: fixed;
+    inset: 0;
+    z-index: 10;
+    display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 24px;
-    padding: 30px 22px;
+    justify-content: center;
+    gap: 32px;
+    width: 100%;
+    height: 100vh;
+    height: 100dvh;
+    margin: 0;
+    padding: 70px var(--gutter) 200px;
+    overflow: hidden;
+    overscroll-behavior: none;
+    touch-action: none;
     background: #ffffff;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(8px);
+    transition:
+        opacity 0.3s ease,
+        transform 0.3s ease,
+        visibility 0.3s ease;
+}
+
+.site-menu.is-open {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: translateY(0);
 }
 
 .site-menu a {
-    color: #999999;
+    color: var(--muted);
+    text-align: center;
     text-decoration: none;
-    font-size: 20px;
+    font-size: 25px;
     font-weight: 400;
     letter-spacing: 0.2px;
-    transition: color 0.2s ease;
+    touch-action: manipulation;
+    transition: color var(--ease);
 }
 
-.site-menu a:hover,
 .site-menu a.active {
-    color: #111111;
+    color: var(--ink);
+}
+
+.menu-stamp {
+    position: absolute;
+    top: calc(50% + 60px);
+    left: 50%;
+    display: block;
+    width: 150px;
+    height: auto;
+    margin: 0;
+    transform: translateX(-50%);
+}
+
+/* Страница под открытым меню не прокручивается */
+html.menu-open {
+    overflow: hidden;
+}
+
+body.menu-open {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
+    overscroll-behavior: none;
 }
 
 
 /* ===== ГЛАВНАЯ: ПРОЕКТЫ ===== */
 
-main {
-    padding: 34px 22px 55px;
-}
-
-#work {
+.work-grid {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
-    row-gap: 42px;
+    row-gap: 20px;
+    margin-top: -50px;
+    padding: 34px var(--gutter) 55px;
 }
 
 .project {
@@ -149,24 +219,8 @@ main {
     transition: opacity 180ms ease;
 }
 
-.project-link:hover .project-image {
-    opacity: 0.84;
-}
-
 .project-title {
     display: none;
-}
-
-.placeholder {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    width: 100%;
-    aspect-ratio: 4 / 3;
-    background: #f1f1f1;
-    color: #888888;
-    font-size: 13px;
-    letter-spacing: 1px;
 }
 
 
@@ -174,23 +228,23 @@ main {
 
 footer {
     margin-top: auto;
-    padding: 30px 22px 24px;
+    padding: 30px var(--gutter) 24px;
     font-size: 11px;
     letter-spacing: 0.5px;
     text-transform: uppercase;
 }
 
 
-/* ===== ВНУТРЕННИЕ СТРАНИЦЫ ===== */
+/* ===== ВНУТРЕННИЕ СТРАНИЦЫ: about, contact, проекты ===== */
 
 .content-layout {
     display: grid;
     grid-template-columns: minmax(0, 1fr);
     gap: 28px;
     width: 100%;
-    max-width: 1100px;
+    max-width: var(--content-max);
     margin: 0 auto;
-    padding: 24px 22px 60px;
+    padding: 24px var(--gutter) 60px;
 }
 
 .page-copy {
@@ -208,106 +262,11 @@ footer {
     line-height: 1.7;
 }
 
-.page-visual {
-    width: 100%;
-    min-width: 0;
-}
-
-.page-visual img {
-    display: block;
-    width: 100%;
-    height: auto;
-}
-
-.page-visual img + img {
-    margin-top: 24px;
-}
-
-
-/* ===== ABOUT И CONTACT ===== */
-
-.contact-page {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 24px;
-    padding: 54px 22px 60px;
-    max-width: 1100px;
-    width: 100%;
-    margin: 0 auto;
-}
-
-.contact-page h1 {
-    margin: 0;
-    font-size: 34px;
-    font-weight: 400;
-    letter-spacing: -0.7px;
-}
-
-.contact-page p {
-    max-width: 560px;
-    margin: 0;
-    font-size: 18px;
-    line-height: 1.7;
-}
-
-.contact-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.contact-links li {
-    margin-bottom: 14px;
-    font-size: 18px;
-    line-height: 1.5;
-}
-
-.contact-links a {
-    color: inherit;
-    text-decoration: underline;
-    text-underline-offset: 3px;
-}
-
-
-/* Ссылка на почту в About */
-
-.about-page a[href^="mailto:"] {
-    color: inherit;
-    text-decoration: none;
-    text-underline-offset: 3px;
-}
-
-.about-page a[href^="mailto:"]:hover {
-    color: #999999;
-}
-
-
-/* ===== СТРАНИЦЫ ПРОЕКТОВ ===== */
-
-.project-page {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 0;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 42px 22px 70px;
-}
-
-.project-page h1 {
-    margin: 0 0 16px;
-    font-size: 32px;
-    font-weight: 400;
-    letter-spacing: -0.5px;
-}
-
 .project-description {
     width: 100%;
     max-width: 560px;
     margin: 0 0 24px;
-    color: #111111;
+    color: var(--ink);
     font-size: 18px;
     font-weight: 400;
     line-height: 1.7;
@@ -321,550 +280,45 @@ footer {
     margin-bottom: 0;
 }
 
-.project-detail-image {
+.page-visual {
     width: 100%;
-    max-width: 100%;
-    height: auto;
-    margin: 0 0 24px;
+    min-width: 0;
 }
 
-
-/* ===== ССЫЛКИ В ТЕКСТЕ ===== */
-
-.text-link {
-    color: #999999;
-    text-decoration: none;
-    transition: color 0.2s ease;
-}
-
-.text-link:hover {
-    color: #111111;
-}
-
-
-/* ===== CLAIM PROJECT ===== */
-
-.claim-page {
-    display: flex;
-    flex-direction: column;
-    gap: 24px;
-    width: 100%;
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 22px 60px;
-}
-
-.claim-video,
-.claim-photo,
-.claim-logo-video {
-    display: block;
+.page-visual img {
     width: 100%;
     height: auto;
 }
 
-.claim-video {
-    aspect-ratio: 9 / 16;
-    object-fit: cover;
+.page-visual img + img {
+    margin-top: 24px;
 }
 
-
-/* ===== СТРАНИЦА ОШИБКИ ===== */
-
-.error-page {
-    padding: 30px 22px;
-}
-
-.error-page h1 {
-    margin: 0 0 24px;
-    font-size: clamp(64px, 15vw, 180px);
-    line-height: 0.9;
+/* Заголовок страницы: одинаковый на about, contact и всех проектах */
+.page-title {
+    margin: 0;
+    font-size: clamp(36px, 4vw, 64px);
     font-weight: 400;
+    line-height: 1;
+    letter-spacing: -0.02em;
 }
 
-.error-image {
-    display: block;
-    width: 100%;
-    max-width: 600px;
-    height: auto;
-    margin-bottom: 24px;
-}
-
-.error-page a {
-    color: inherit;
+/* Ссылки внутри текста */
+.text-link {
+    color: var(--muted);
     text-decoration: none;
-    font-size: 14px;
+    transition: color var(--ease);
 }
 
 
-/* ===== ДЕСКТОП ===== */
-
-@media (min-width: 700px) {
-
-    .site-header {
-        padding: 0;
-    }
-
-    .logo {
-        flex: 0 1 300px;
-        width: 300px;
-    }
-
-    .menu-button {
-        display: none;
-    }
-
-    .site-menu {
-        position: relative;
-        z-index: 10;
-        display: flex;
-        flex-direction: row;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 28px;
-        padding: 30px 40px 0 0;
-        margin-left: auto;
-        background: transparent;
-    }
-
-    .site-menu a {
-        font-size: 20px;
-    }
-
-    #work {
-        grid-template-columns: repeat(12, minmax(0, 1fr));
-        column-gap: 24px;
-        row-gap: 30px;
-        align-items: start;
-        padding: 0px 40px 70px;
-    }
-
-    #work .project:nth-child(1) {
-        grid-column: 1 / span 5;
-        grid-row: 1;
-        margin-top: -20px;
-        margin-left: -20px;
-    }
-
-    #work .project:nth-child(2) {
-        grid-column: 7 / span 5;
-        grid-row: 1;
-        margin-top: -50px;
-        margin-right: -70px;
-    }
-
-    #work .project:nth-child(3) {
-        grid-column: 4 / span 6;
-        grid-row: 2;
-        margin-top: -110px;
-        margin-right: -120px;
-    }
-
-    #work .project:nth-child(4) {
-        grid-column: 1 / span 5;
-        grid-row: 3;
-        margin-top: -30px;
-        margin-left: -20px;
-    }
-
-    #work .project:nth-child(5) {
-        grid-column: 7 / span 6;
-        grid-row: 3;
-        margin-top: 30px;
-    }
-
-    /* Единое выравнивание внутренних страниц */
-
-    .content-layout,
-    .contact-page,
-    .project-page,
-    .claim-page {
-        margin-left: auto;
-        margin-right: auto;
-        padding-left: 40px;
-        padding-right: 40px;
-    }
-
-    /* Две колонки: текст слева, изображения справа */
-
-    .content-layout {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        column-gap: 60px;
-        row-gap: 28px;
-        padding-top: 44px;
-        padding-bottom: 80px;
-    }
-
-    .page-copy p {
-        font-size: 19px;
-    }
-
-    .contact-page {
-        padding-top: 74px;
-        padding-bottom: 80px;
-    }
-
-    .contact-page h1 {
-        font-size: 30px;
-    }
-
-    .contact-page p,
-    .contact-links li {
-        font-size: 19px;
-    }
-
-    .project-page {
-        padding-top: 54px;
-        padding-bottom: 80px;
-    }
-
-    .project-page h1 {
-        font-size: 28px;
-    }
-
-    .project-description {
-        font-size: 19px;
-    }
-
-    /* Claim: текст слева, медиа справа */
-
-    .claim-page {
-        display: grid;
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
-        align-items: start;
-        column-gap: 60px;
-        row-gap: 40px;
-        padding-top: 38px;
-        padding-bottom: 80px;
-    }
-
-    .claim-page .page-copy {
-        grid-column: 1;
-        grid-row: 1;
-        margin: 0;
-    }
-
-    .claim-video,
-    .claim-photo,
-    .claim-logo-video {
-        width: 100%;
-        height: auto;
-        padding: 0;
-    }
-
-    .claim-video {
-        grid-column: 2;
-        grid-row: 1;
-        aspect-ratio: 9 / 16;
-        object-fit: cover;
-    }
-
-    .claim-photo {
-        grid-column: 2;
-        grid-row: 2;
-    }
-
-    .claim-diskspin-video {
-        grid-column: 2;
-        grid-row: 3;
-    }
-
-    .claim-page .claim-logo-video:not(.claim-diskspin-video) {
-        grid-column: 2;
-        grid-row: 4;
-    }
-
-    /* Особая ширина изображений проекта The Dump */
-
-    .content-layout:has(img[src*="thedumppagessite"]) .page-visual {
-        width: calc(100% + 44px);
-        margin-left: -22px;
-    }
-}
-
-
-/* ===== МОБИЛЬНАЯ ВЕРСИЯ ===== */
-
-@media (max-width: 699px) {
-
-    .site-header {
-        position: relative;
-        z-index: 20;
-        padding: 0;
-        align-items: flex-start;
-        background: #ffffff;
-    }
-
-    .logo {
-        flex: 0 1 55%;
-        width: 55%;
-        min-width: 0;
-        position: relative;
-        z-index: 30;
-    }
-
-    .logo img {
-        width: 100%;
-    }
-
-    .menu-button {
-        display: block;
-        position: relative;
-        z-index: 30;
-        margin: 12px 14px 0 auto;
-        font-size: 36px;
-    }
-
-    .site-menu {
-        position: fixed;
-        inset: 0;
-        z-index: 10;
-        width: 100%;
-        height: 100vh;
-        height: 100dvh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        gap: 32px;
-        padding: 70px 22px 90px;
-        margin: 0;
-        background: #ffffff;
-        box-sizing: border-box;
-        opacity: 0;
-        visibility: hidden;
-        pointer-events: none;
-        transform: translateY(8px);
-        transition:
-            opacity 0.3s ease,
-            transform 0.3s ease,
-            visibility 0.3s ease;
-    }
-
-    .site-menu.is-open {
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-        transform: translateY(0);
-    }
-
-    .site-menu a {
-        font-size: 25px;
-        text-align: center;
-    }
-
-    .about-page h1,
-    .contact-page h1 {
-        font-size: 30px;
-        margin-top: 0;
-    }
-
-    .about-page > p,
-    .contact-page p,
-    .contact-links li,
-    .project-description {
-        font-size: 18px;
-    }
-
-    .project-page h1 {
-        font-size: 28px;
-        margin-top: 0;
-    }
-
-    .claim-page {
-        padding: 0 0 40px;
-        gap: 20px;
-    }
-
-    .claim-video {
-        width: 100%;
-    }
-
-    .claim-photo,
-    .claim-logo-video {
-        padding: 0 22px;
-    }
-
-    .claim-page .page-copy {
-        margin: 0 22px;
-    }
-
-    .content-layout:has(img[src*="thedumppagessite"]) .page-visual {
-        width: calc(100% + 44px);
-        margin-left: -22px;
-    }
-}
-
-/* ===== МОБИЛЬНАЯ ГЛАВНАЯ ===== */
-
-@media (max-width: 699px) {
-    #work {
-        margin-top: -50px;
-        row-gap: 20px;
-    }
-
-      /* Немного уменьшаем вторую карточку */
-    #work .project:nth-child(2) {
-        width: 100%;
-      margin-left: auto;
-    margin-right: auto;
-        margin-bottom: 5px;
-    }
-  /* Делаем третью карточку шире */
-    #work .project:nth-child(3) {
-        width: calc(100% + 60px);
-        margin-left: -35px;
-    }
-    /* Уменьшаем расстояние от третьей карточки до четвёртой */
-    #work .project:nth-child(4) {
-        margin-top: -15px;
-    }
-
-    #work .project:nth-child(3) .project-image {
-        width: 100%;
-        transform: none;
-    }
-}
-
-
-
-/* Логотип не анимируем */
-
-.site-header .logo img {
-    animation: none;
-    opacity: 1;
-    transform: none;
-}
-
-
-
-/* ===== УМЕНЬШЕНИЕ АНИМАЦИИ ===== */
-
-@media (prefers-reduced-motion: reduce) {
-
-    html {
-        scroll-behavior: auto;
-    }
-
-    *,
-    *::before,
-    *::after {
-        transition-duration: 0.01ms !important;
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        scroll-behavior: auto !important;
-    }
-
-    .site-header .logo img {
-        animation: none !important;
-        opacity: 1;
-        transform: none;
-    }
-}
-
-/* ===== ФЕЙД-ИН ПОСЛЕ ЗАГРУЗКИ МЕДИА ===== */
-
-img.media-pending,
-video.media-pending {
-    opacity: 0;
-}
-
-img.media-loaded,
-video.media-loaded {
-    animation: mediaFadeIn 0.8s ease both;
-}
-
-/* Логотип появляется сразу */
-
-.site-header .logo img {
-    opacity: 1;
-    animation: none !important;
-}
-
-@keyframes mediaFadeIn {
-    from {
-        opacity: 0;
-        transform: translateY(6px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@media (prefers-reduced-motion: reduce) {
-    img.media-pending,
-    video.media-pending {
-        opacity: 1;
-    }
-
-    img.media-loaded,
-    video.media-loaded {
-        animation: none !important;
-        opacity: 1;
-        transform: none;
-    }
-}
-/* Sticky project description — desktop only */
-@media (min-width: 700px) {
-    .content-layout .page-copy {
-        position: sticky;
-        top: 70px;
-        align-self: start;
-    }
-
-    .claim-page > .page-copy {
-        position: sticky;
-        top: 70px;
-        align-self: start;
-    }
-}
-
-
-/* ===== ИКОНКИ КОНТАКТОВ ===== */
-
-.contact-links {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 22px;
-    padding: 0;
-    margin: 0;
-    list-style: none;
-}
-
-.contact-links li {
-    margin: 0;
-    line-height: 0;
-}
-
-.contact-links a {
-    display: inline-flex;
-    align-items: center;
-    justify-content: flex-start;
-    text-decoration: none;
-}
-
-.contact-links img {
-    display: block;
-    width: 46px;
-    height: 46px;
-    object-fit: contain;
-    transition: opacity 0.2s ease;
-}
-
-.contact-links a:hover img {
-    opacity: 0.65;
-}
-
-/* ===== CONTACT: КРУПНЫЕ ИКОНКИ ===== */
+/* ===== CONTACT ===== */
 
 .contact-layout .contact-icons {
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    gap: 30px;
+    gap: 24px;
     padding: 10px 0;
 }
 
@@ -880,15 +334,271 @@ video.media-loaded {
     width: 64px;
     height: 64px;
     object-fit: contain;
-    transition: opacity 0.2s ease;
+    transition: opacity var(--ease);
 }
 
-.contact-layout .contact-icons a:hover img {
-    opacity: 0.65;
+
+/* ===== CLAIM ===== */
+
+.claim-page {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: var(--content-max);
+    margin: 0 auto;
+    padding: 24px 0 40px;
 }
 
+.claim-page .page-copy {
+    margin: 0 var(--gutter);
+}
+
+.claim-video,
+.claim-photo,
+.claim-logo-video {
+    display: block;
+    width: 100%;
+    height: auto;
+}
+
+.claim-photo,
+.claim-logo-video {
+    padding: 0 var(--gutter);
+}
+
+.claim-video {
+    aspect-ratio: 9 / 16;
+    object-fit: cover;
+}
+
+
+/* ===== СТРАНИЦА ОШИБКИ (404) ===== */
+
+.error-page {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    min-height: 70vh;
+    padding: 30px var(--gutter);
+    text-align: center;
+}
+
+.error-page h1 {
+    margin: 0 0 24px;
+    font-size: clamp(64px, 15vw, 180px);
+    font-weight: 400;
+    line-height: 0.9;
+}
+
+.error-image {
+    width: 100%;
+    max-width: 600px;
+    height: auto;
+    margin: 0 0 24px;
+}
+
+.error-page a {
+    color: inherit;
+    text-decoration: none;
+    font-size: 14px;
+}
+
+
+/* ===== ПОЯВЛЕНИЕ КАРТИНОК И ВИДЕО (см. script.js) ===== */
+
+img.media-pending,
+video.media-pending {
+    opacity: 0;
+}
+
+/* backwards, а не both: после анимации не «замораживаем» opacity,
+   иначе hover-эффекты на картинках не работают */
+img.media-loaded,
+video.media-loaded {
+    animation: mediaFadeIn 0.8s ease backwards;
+}
+
+@keyframes mediaFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(6px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+
+/* ===== НАВЕДЕНИЕ: только там, где есть мышь ===== */
+
+@media (hover: hover) {
+    .site-menu a:hover {
+        color: var(--ink);
+    }
+
+    .project-link:hover .project-image {
+        opacity: 0.84;
+    }
+
+    .text-link:hover {
+        color: var(--ink);
+    }
+
+    .contact-layout .contact-icons a:hover img {
+        opacity: 0.65;
+    }
+}
+
+
+/* ===== ТЕЛЕФОН: подгонка карточек на главной ===== */
+
+@media (max-width: 699.98px) {
+    /* Третья карточка шире и выходит за левое поле */
+    .work-grid .project:nth-child(3) {
+        width: calc(100% + 57px);
+        margin-left: -35px;
+    }
+
+    /* Четвёртая ближе к третьей */
+    .work-grid .project:nth-child(4) {
+        margin-top: -15px;
+    }
+}
+
+
+/* ===== ДЕСКТОП ===== */
 
 @media (min-width: 700px) {
+
+    /* Шапка и меню */
+
+    .site-header {
+        z-index: auto;
+    }
+
+    .logo {
+        flex: 0 1 max(180px, 19.84vw);   /* 300px на эталонных 1512px */
+        width: max(180px, 19.84vw);
+    }
+
+    .menu-button,
+    .menu-stamp {
+        display: none;
+    }
+
+    .site-menu {
+        position: relative;
+        inset: auto;
+        z-index: 10;
+        flex-direction: row;
+        justify-content: flex-end;
+        gap: 28px;
+        width: auto;
+        height: auto;
+        margin-left: auto;
+        padding: 30px var(--gutter-wide) 0 0;
+        overflow: visible;
+        touch-action: auto;
+        background: transparent;
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+        transform: none;
+        transition: none;
+    }
+
+    .site-menu a {
+        font-size: 20px;
+    }
+
+    /* Главная: асимметричная сетка */
+
+    /* Все размеры в vw: композиция выглядит одинаково на любой ширине.
+       Эталон 1512px (MacBook 14"): значение в vw = пиксели / 1512 * 100.
+       Чтобы подвинуть карточку, меняй vw: 1vw примерно 15px на эталонном экране. */
+
+    .work-grid {
+        grid-template-columns: repeat(12, minmax(0, 1fr));
+        column-gap: 1.59vw;
+        row-gap: 1.98vw;
+        align-items: start;
+        margin-top: 0;
+        padding: 0 2.65vw 4.63vw;
+    }
+
+    .work-grid .project:nth-child(1) {
+        grid-column: 1 / span 5;
+        grid-row: 1;
+        margin-top: -1.32vw;
+        margin-left: -1.32vw;
+        transform: translateY(-1.65vw);
+    }
+
+    .work-grid .project:nth-child(2) {
+        grid-column: 7 / span 5;
+        grid-row: 1;
+        margin-top: -3.31vw;
+        margin-right: -4.63vw;
+        transform: translateY(-1.65vw);
+    }
+
+    .work-grid .project:nth-child(3) {
+        grid-column: 4 / span 6;
+        grid-row: 2;
+        margin-top: -7.28vw;
+        margin-right: -7.94vw;
+    }
+
+    .work-grid .project:nth-child(4) {
+        grid-column: 1 / span 5;
+        grid-row: 3;
+        margin-top: -1.98vw;
+        margin-left: -1.32vw;
+    }
+
+    .work-grid .project:nth-child(5) {
+        grid-column: 7 / span 6;
+        grid-row: 3;
+        margin-top: 1.98vw;
+    }
+
+    /* Внутренние страницы: текст слева, изображения справа */
+
+    .content-layout,
+    .claim-page {
+        padding-left: var(--gutter-wide);
+        padding-right: var(--gutter-wide);
+    }
+
+    .content-layout {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        column-gap: 60px;
+        row-gap: 28px;
+        padding-top: 44px;
+        padding-bottom: 80px;
+    }
+
+    .page-copy p,
+    .project-description {
+        font-size: 19px;
+    }
+
+    /* Текст остаётся на экране, пока листаются картинки */
+    .content-layout .page-copy,
+    .claim-page > .page-copy {
+        position: sticky;
+        top: 70px;
+        align-self: start;
+    }
+
+    /* Contact */
+
     .contact-layout {
         min-height: 55vh;
     }
@@ -897,7 +607,6 @@ video.media-loaded {
         grid-column: 2;
         grid-row: 1;
         align-self: stretch;
-        justify-content: center;
         gap: 38px;
     }
 
@@ -906,165 +615,53 @@ video.media-loaded {
         height: 88px;
     }
 
-    .contact-footer {
-        position: relative;
-        width: 100%;
-        padding-right: 40px;
+    /* Claim: текст слева, четыре медиа-блока справа */
+
+    .claim-page {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+        align-items: start;
+        column-gap: 60px;
+        row-gap: 40px;
+        padding-top: 44px;
+        padding-bottom: 80px;
     }
 
-    .contact-footer .footer-stamp {
-        display: block;
-        width: 100px;
-        height: auto;
-        margin-left: auto;
-        animation: none;
-        opacity: 1;
-        transform: none;
-    }
-}
-
-@media (max-width: 699px) {
-    .contact-layout .contact-icons {
-        align-items: center;
-        gap: 24px;
-        padding-top: 10px;
-    }
-
-    .contact-layout .contact-icons img {
-        width: 64px;
-        height: 64px;
-    }
-
-    .contact-footer .footer-stamp {
-        display: none;
-    }
-}
-
-
-/* ===== ПЕЧАТЬ В МОБИЛЬНОМ МЕНЮ ===== */
-
-.menu-stamp {
-    display: none;
-}
-
-@media (max-width: 699px) {
-    .site-menu {
-        gap: 32px;
-    }
-
-    .site-menu .menu-stamp {
-        display: block;
-        flex: 0 0 auto;
-        width: 175px;
-        height: auto;
+    .claim-page > .page-copy {
+        grid-column: 1;
+        grid-row: 1 / span 4;   /* 4 = число медиа-блоков справа; текст липнет на всю высоту */
         margin: 0;
-        animation: none;
+    }
+
+    .claim-page > :not(.page-copy) {
+        grid-column: 2;
+    }
+
+    .claim-photo,
+    .claim-logo-video {
+        padding: 0;
+    }
+}
+
+
+/* ===== УМЕНЬШЕНИЕ АНИМАЦИИ ===== */
+
+@media (prefers-reduced-motion: reduce) {
+    html {
+        scroll-behavior: auto;
+    }
+
+    *,
+    *::before,
+    *::after {
+        transition-duration: 0.01ms !important;
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        scroll-behavior: auto !important;
+    }
+
+    img.media-pending,
+    video.media-pending {
         opacity: 1;
-        transform: none;
-    }
-}
-
-@media (min-width: 700px) {
-    .site-menu .menu-stamp {
-        display: none;
-    }
-}
-
-
-
-/* ===== ЕДИНОЕ МОБИЛЬНОЕ МЕНЮ НА ВСЕХ СТРАНИЦАХ ===== */
-
-.menu-stamp {
-    display: none;
-}
-
-@media (max-width: 699px) {
-    .site-menu {
-        justify-content: center;
-        padding-bottom: 200px;
-    }
-
-    .site-menu .menu-stamp {
-        display: block;
-        position: absolute;
-        top: calc(50% + 60px);
-        left: 50%;
-        width: 150px;
-        height: auto;
-        margin: 0;
-        flex: 0 0 auto;
-        animation: none;
-        opacity: 1;
-        transform: translateX(-50%);
-    }
-
-    .site-menu.is-open .menu-stamp {
-        transform: translateX(-50%);
-    }
-}
-
-@media (min-width: 700px) {
-    .site-menu .menu-stamp {
-        display: none;
-    }
-}
-@media (min-width: 700px) {
-    #work .project:nth-child(1),
-    #work .project:nth-child(2) {
-        transform: translateY(-25px);
-    }
-}
-/* ===== БЛОКИРОВКА ПРОКРУТКИ ПРИ ОТКРЫТОМ МЕНЮ ===== */
-
-html.menu-open,
-body.menu-open {
-    overflow: hidden;
-    overscroll-behavior: none;
-}
-
-@media (max-width: 699px) {
-    .site-menu {
-        position: fixed;
-        inset: 0;
-        height: 100vh;
-        height: 100dvh;
-        overflow: hidden;
-        overscroll-behavior: none;
-    }
-}
-
-
-/* ===== БЛОКИРОВКА СТРАНИЦЫ ПОД МЕНЮ ===== */
-
-html.menu-open {
-    overflow: hidden;
-}
-
-body.menu-open {
-    position: fixed;
-    left: 0;
-    right: 0;
-    width: 100%;
-    overflow: hidden;
-}
-
-@media (max-width: 699px) {
-    .site-menu {
-        overscroll-behavior: none;
-        touch-action: none;
-    }
-
-    .site-menu a {
-        touch-action: manipulation;
-    }
-}
-/* ===== ПОДНИМАЕМ ЗАГОЛОВКИ НА МОБИЛЬНЫХ ===== */
-
-@media (max-width: 699px) {
-    .about-page h1,
-    .contact-page h1,
-    .project-page h1,
-    .claim-page h1 {
-        transform: translateY(-30px) !important;
     }
 }

@@ -1,10 +1,18 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="robots" content="noindex">
+
+    <!-- Эта страница показывается вместо любой непосещённой страницы без сети,
+         поэтому путь к картинке считаем от корня сайта.
+         Если сайт переедет на свой домен, замени на: <base href="/"> -->
+    <base href="/polinamogilnaya-portfolio/">
+
     <title>FAILED</title>
+
+    <!-- Стили встроены намеренно: страница должна выглядеть правильно без сети -->
     <style>
         * {
             box-sizing: border-box;
@@ -60,7 +68,8 @@
     <main>
         <h1>FAILED</h1>
         <img src="images/failed.png" alt="FAILED">
-        <a href="/polinamogilnaya-portfolio/">retry</a>
+        <!-- retry перезагружает ту страницу, которую хотели открыть -->
+        <a href="" onclick="location.reload(); return false;">retry</a>
     </main>
 </body>
 </html>
