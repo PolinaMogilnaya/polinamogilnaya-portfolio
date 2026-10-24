@@ -433,36 +433,43 @@ footer {
     #work {
         grid-template-columns: repeat(12, minmax(0, 1fr));
         column-gap: 24px;
-        row-gap: 60px;
+        row-gap: 30px;
         align-items: start;
-        padding: 42px 40px 70px;
+        padding: 0px 40px 70px;
     }
 
     #work .project:nth-child(1) {
-        grid-column: 1 / span 7;
+        grid-column: 1 / span 5;
         grid-row: 1;
+        margin-top: -20px;
+        margin-left: -20px;
     }
 
     #work .project:nth-child(2) {
-        grid-column: 9 / span 4;
+        grid-column: 7 / span 5;
         grid-row: 1;
-        margin-top: 90px;
+        margin-top: -50px;
+        margin-right: -70px;
     }
 
     #work .project:nth-child(3) {
-        grid-column: 3 / span 6;
+        grid-column: 4 / span 6;
         grid-row: 2;
+        margin-top: -110px;
+        margin-right: -120px;
     }
 
     #work .project:nth-child(4) {
         grid-column: 1 / span 5;
         grid-row: 3;
+        margin-top: -30px;
+        margin-left: -20px;
     }
 
     #work .project:nth-child(5) {
         grid-column: 7 / span 6;
         grid-row: 3;
-        margin-top: 70px;
+        margin-top: 30px;
     }
 
     /* Единое выравнивание внутренних страниц */
@@ -648,6 +655,7 @@ footer {
     .about-page h1,
     .contact-page h1 {
         font-size: 30px;
+        margin-top: 0;
     }
 
     .about-page > p,
@@ -659,6 +667,7 @@ footer {
 
     .project-page h1 {
         font-size: 28px;
+        margin-top: 0;
     }
 
     .claim-page {
@@ -685,6 +694,36 @@ footer {
     }
 }
 
+/* ===== МОБИЛЬНАЯ ГЛАВНАЯ ===== */
+
+@media (max-width: 699px) {
+    #work {
+        margin-top: -50px;
+        row-gap: 20px;
+    }
+
+      /* Немного уменьшаем вторую карточку */
+    #work .project:nth-child(2) {
+        width: 100%;
+      margin-left: auto;
+    margin-right: auto;
+        margin-bottom: 5px;
+    }
+  /* Делаем третью карточку шире */
+    #work .project:nth-child(3) {
+        width: calc(100% + 60px);
+        margin-left: -35px;
+    }
+    /* Уменьшаем расстояние от третьей карточки до четвёртой */
+    #work .project:nth-child(4) {
+        margin-top: -15px;
+    }
+
+    #work .project:nth-child(3) .project-image {
+        width: 100%;
+        transform: none;
+    }
+}
 
 
 
@@ -848,18 +887,6 @@ video.media-loaded {
     opacity: 0.65;
 }
 
-/* ===== CONTACT: ПЕЧАТЬ В ПОДВАЛЕ ===== */
-
-.contact-footer {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    gap: 20px;
-}
-
-.footer-stamp {
-    display: none;
-}
 
 @media (min-width: 700px) {
     .contact-layout {
@@ -928,7 +955,7 @@ video.media-loaded {
     .site-menu .menu-stamp {
         display: block;
         flex: 0 0 auto;
-        width: 110px;
+        width: 175px;
         height: auto;
         margin: 0;
         animation: none;
@@ -960,9 +987,9 @@ video.media-loaded {
     .site-menu .menu-stamp {
         display: block;
         position: absolute;
-        top: calc(50% + 40px);
+        top: calc(50% + 60px);
         left: 50%;
-        width: 125px;
+        width: 150px;
         height: auto;
         margin: 0;
         flex: 0 0 auto;
@@ -979,5 +1006,65 @@ video.media-loaded {
 @media (min-width: 700px) {
     .site-menu .menu-stamp {
         display: none;
+    }
+}
+@media (min-width: 700px) {
+    #work .project:nth-child(1),
+    #work .project:nth-child(2) {
+        transform: translateY(-25px);
+    }
+}
+/* ===== БЛОКИРОВКА ПРОКРУТКИ ПРИ ОТКРЫТОМ МЕНЮ ===== */
+
+html.menu-open,
+body.menu-open {
+    overflow: hidden;
+    overscroll-behavior: none;
+}
+
+@media (max-width: 699px) {
+    .site-menu {
+        position: fixed;
+        inset: 0;
+        height: 100vh;
+        height: 100dvh;
+        overflow: hidden;
+        overscroll-behavior: none;
+    }
+}
+
+
+/* ===== БЛОКИРОВКА СТРАНИЦЫ ПОД МЕНЮ ===== */
+
+html.menu-open {
+    overflow: hidden;
+}
+
+body.menu-open {
+    position: fixed;
+    left: 0;
+    right: 0;
+    width: 100%;
+    overflow: hidden;
+}
+
+@media (max-width: 699px) {
+    .site-menu {
+        overscroll-behavior: none;
+        touch-action: none;
+    }
+
+    .site-menu a {
+        touch-action: manipulation;
+    }
+}
+/* ===== ПОДНИМАЕМ ЗАГОЛОВКИ НА МОБИЛЬНЫХ ===== */
+
+@media (max-width: 699px) {
+    .about-page h1,
+    .contact-page h1,
+    .project-page h1,
+    .claim-page h1 {
+        transform: translateY(-30px) !important;
     }
 }

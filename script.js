@@ -19,9 +19,29 @@ const siteMenu = document.querySelector(".site-menu");
 
 /* ===== МОБИЛЬНОЕ МЕНЮ ===== */
 
+let savedScrollY = 0;
+
 if (menuButton && siteMenu) {
     menuButton.addEventListener("click", () => {
         const isOpen = siteMenu.classList.toggle("is-open");
+
+        if (isOpen) {
+            // Запоминаем положение страницы
+            savedScrollY = window.scrollY;
+
+            // Фиксируем страницу на месте
+            document.body.style.top = `-${savedScrollY}px`;
+            document.documentElement.classList.add("menu-open");
+            document.body.classList.add("menu-open");
+        } else {
+            // Разблокируем страницу
+            document.documentElement.classList.remove("menu-open");
+            document.body.classList.remove("menu-open");
+            document.body.style.top = "";
+
+            // Возвращаемся к прежнему месту
+            window.scrollTo(0, savedScrollY);
+        }
 
         menuButton.setAttribute("aria-expanded", String(isOpen));
         siteMenu.setAttribute("aria-hidden", String(!isOpen));
@@ -31,7 +51,6 @@ if (menuButton && siteMenu) {
         );
     });
 }
-
 /* ===== ФЕЙД-ИН ИЗОБРАЖЕНИЙ И ВИДЕО ===== */
 
 function showMedia(media) {
