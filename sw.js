@@ -4,13 +4,13 @@
    - картинки: сразу из кэша, а в фоне обновляются; не загрузилась картинка, то показывается failed.png;
    - видео не кэшируются (браузеры запрашивают их кусками). */
 
-const CACHE_NAME = "polina-v3";
+const CACHE_NAME = "polina-v4";
 const MAX_ENTRIES = 120;
 
 const toUrl = path => new URL(path, self.registration.scope).href;
 
 const OFFLINE_PAGE = toUrl("offline.html");
-const FAILED_IMAGE = toUrl("images/failed.png");
+const FAILED_IMAGE = toUrl("images/failed.webp");
 
 // Кэшируется сразу при установке (проекты и остальные картинки попадают в кэш по мере посещения)
 const CORE_FILES = [
@@ -21,9 +21,9 @@ const CORE_FILES = [
     "offline.html",
     "style.css",
     "script.js",
-    "images/logosite.png",
-    "images/printsite.png",
-    "images/failed.png"
+    "images/logo.webp",
+    "images/stamp.webp",
+    "images/failed.webp"
 ].map(toUrl);
 
 

@@ -129,11 +129,13 @@ function prepareMedia(media) {
 
     // Запасной вариант: видео не должно оставаться невидимым,
     // если телефон не подгружает его заранее
-    window.setTimeout(() => {
-        if (media.dataset.fadeHandled !== "true") {
-            showMedia(media);
-        }
-    }, 3000);
+    if (!isImage) {
+        window.setTimeout(() => {
+            if (media.dataset.fadeHandled !== "true") {
+                showMedia(media);
+            }
+        }, 3000);
+    }
 }
 
 document.querySelectorAll("main img, main video").forEach(prepareMedia);
