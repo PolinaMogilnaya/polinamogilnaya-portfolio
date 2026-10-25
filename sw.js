@@ -23,7 +23,8 @@ const CORE_FILES = [
     "script.js",
     "images/logo.webp",
     "images/stamp.webp",
-    "images/failed.webp"
+    "images/failed.webp",
+    "images/favicon.png"
 ].map(toUrl);
 
 
