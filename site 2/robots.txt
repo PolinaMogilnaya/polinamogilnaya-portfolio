@@ -1,5 +1,0 @@
-User-agent: *
-Allow: /
-Disallow: /404.html
-
-Sitemap: https://polinamogilnaya.com/sitemap.xml
